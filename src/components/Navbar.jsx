@@ -1,14 +1,9 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
-import React from "react";
+import React from 'react'
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <AppBar>
-      <Toolbar>
-        <Typography variant="h6">PicPost</Typography>
-      </Toolbar>
-    </AppBar>
-  );
-};
+    <div>Navbar</div>
+  )
+}
 
-export default Navbar;
+export default Navbar
