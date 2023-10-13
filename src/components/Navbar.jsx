@@ -5,11 +5,14 @@ import {
   Badge,
   Box,
   InputBase,
+  Menu,
+  MenuItem,
   styled,
   Toolbar,
   Typography,
 } from "@mui/material";
 import React from "react";
+import { useState } from "react";
 
 const StyleToolBar = styled(Toolbar)({
   display: "flex",
@@ -40,52 +43,74 @@ const UserBox = styled(Box)(({ theme }) => ({
     display: "none",
   },
 }));
+
+// function Nav
 function Navbar() {
+  const [open, setopen] = useState(false);
+
   return (
-    <Box>
-      <AppBar position="sticky">
-        <StyleToolBar>
-          <Typography
-            variant="h6"
-            sx={{
-              display: { xs: "none", sm: "block" },
-            }}
-          >
-            PicPost
-          </Typography>
-          <Pets
-            sx={{
-              display: {
-                xs: "block",
-                sm: "none",
-              },
-            }}
+    <AppBar position="sticky">
+      <StyleToolBar>
+        <Typography
+          variant="h6"
+          sx={{
+            display: { xs: "none", sm: "block" },
+          }}
+        >
+          PicPost
+        </Typography>
+        <Pets
+          sx={{
+            display: {
+              xs: "block",
+              sm: "none",
+            },
+          }}
+        />
+        <Search>
+          <InputBase placeholder="search..." />
+        </Search>
+        <Icons onClick={(e) => setopen(true)}>
+          <Badge badgeContent={4} color="error">
+            <Mail />
+          </Badge>
+          <Badge badgeContent={2} color="error">
+            <Notifications />
+          </Badge>
+          <Avatar
+            sx={{ width: "30px", height: "30px" }}
+            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           />
-          <Search>
-            <InputBase placeholder="search..." />
-          </Search>
-          <Icons>
-            <Badge badgeContent={4} color="error">
-              <Mail />
-            </Badge>
-            <Badge badgeContent={2} color="error">
-              <Notifications />
-            </Badge>
-            <Avatar
-              sx={{ width: "30px", height: "30px" }}
-              src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-          </Icons>
-          <UserBox>
-            <Avatar
-              sx={{ width: "30px", height: "30px" }}
-              src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Typography variant="span">John</Typography>
-          </UserBox>
-        </StyleToolBar>
-      </AppBar>
-    </Box>
+        </Icons>
+        <UserBox onClick={(e) => setopen(true)}>
+          <Avatar
+            sx={{ width: "30px", height: "30px" }}
+            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          />
+          <Typography variant="span">John</Typography>
+        </UserBox>
+
+        {/* menu bar */}
+        <Menu
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          open={open}
+          onClose={(e) => setopen(false)}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+        >
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>My account</MenuItem>
+          <MenuItem>Logout</MenuItem>
+        </Menu>
+      </StyleToolBar>
+    </AppBar>
   );
 }
 
