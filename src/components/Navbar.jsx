@@ -45,7 +45,7 @@ const UserBox = styled(Box)(({ theme }) => ({
 }));
 
 // function Nav
-function Navbar() {
+function Navbar({ barOpen, setbarOpen }) {
   const [open, setopen] = useState(false);
 
   return (
@@ -60,6 +60,7 @@ function Navbar() {
           PicPost
         </Typography>
         <Pets
+          onClick={() => setbarOpen(!barOpen)}
           sx={{
             display: {
               xs: "block",
